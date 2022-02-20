@@ -2,7 +2,7 @@
 ## Exercises
 ### Excercise No. 1
 The following are the state diagrams of two DFAs, M1 and M2. Answer the following questions about each of these machines.
-"M1 M2 Photo"
+![enter image description here](https://github.com/geekahmed/Theory-of-Computation/blob/main/1.%20Regular%20Languages/Images/M1M2.png?raw=true)
 a. What is the start state?
 
     For M1: q1
@@ -63,4 +63,4 @@ The formal description of a DFA M is ({q1, q2, q3, q4, q5}, {u, d}, δ, q3, {q3}
 |  $q_4$  |   $q_3$ |   $q_5$ |
 |   $q_5$ |  $q_4$  |   $q_5$ |
 
-""Q3 Image""
+![enter image description here](https://github.com/geekahmed/Theory-of-Computation/blob/main/1.%20Regular%20Languages/Images/Q3.png?raw=true)
