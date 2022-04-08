@@ -94,4 +94,20 @@
 		1. $r_0 = q_0$,: the machine starts in the start state.
 		2. $r_{i+1} {\in}{\space}δ(r_i , w_{i+1}), for \space i = 0, . . . , n − 1$
 		3. and $r_m ∈ F$: t 
+### Equivalence of NFAs and DFAs
+- Deterministic and nondeterministic finite automata recognize the same class of languages.
+- Two machines are equivalent if they recognize the same language.
+- Every nondeterministic finite automaton has an equivalent deterministic finite automaton.
+	- ***PROOF IDEA*** If a language is recognized by an NFA , then we must show the existence of a DFA that also recognizes it. The idea is to convert the NFA into an equivalent DFA that simulates the NFA .
+	- If k is the number of states of the NFA , it has $2^k$ subsets of states. Each subset corresponds to one of the possibilities that the DFA must remember, so the DFA simulating the NFA will have $2^k$ states.
 
+Let $N = (Q, Σ, δ, q_0 , F )$ be the NFA recognizing some language A. We construct a DFA $M = (Q{\prime} , Σ, δ{\prime} , q_0{\prime} , F{\prime} )$ recognizing A.
+
+ 1. $Q{\prime} = P(Q)$. Every state of M is a set of states of N.
+ 2. For $R ∈ Q{\prime}$ and $a ∈ Σ$, let $δ{\prime} (R, a) = \text{\textbraceleft} q ∈ Q| q ∈  E(δ(r, a)) \space for \space some \space r ∈ R \text{\textbraceright}$
+ 3. $E(R)$ is a collection of states that can be reached from members of R by only going along $\epsilon$ arrows, including the members of $R$ themselves. for $R\subset Q$ -> $E(R) = \text{\textbraceleft}  q | q\space can \space be \space reached \space from \space R \space by \space travelling \space along \space 0 \space or \space more \space \epsilon \space arrows\text{\textbraceright}$.
+ 4. $q_0{\prime} = E(\text{\textbraceleft} q_0 \text{\textbraceright})$
+ 5. $F{\prime} = \text{\textbraceleft} R \in Q |\space R \space contains \space an \space accept \space state \space of \space N\text{\textbraceright}$
+ - A language is regular if and only if some nondeterministic finite automaton recognizes it.
+
+### Closure Under The Regular Operations
