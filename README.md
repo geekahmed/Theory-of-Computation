@@ -17,5 +17,5 @@ Fall 2020
 Course Link: https://ocw.mit.edu/courses/mathematics/18-404j-theory-of-computation-fall-2020/index.htm
 
 # Table of Contents
-- [Chapter 0. Introduction](#)
-- [Chapter 1. Regular Languages](#)
+- [Chapter 0. Introduction](https://github.com/geekahmed/Theory-of-Computation/tree/main/0.%20Introduction)
+- [Chapter 1. Regular Languages](https://github.com/geekahmed/Theory-of-Computation/tree/main/1.%20Regular%20Languages)
