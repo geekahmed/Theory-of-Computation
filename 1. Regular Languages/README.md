@@ -52,21 +52,46 @@
 > 
 > Construct M to recognize A1 ∪ A2, where M = (Q, Σ, δ, q0, F).
 > 
-> 1. Q = {(r1, r2)| r1 ∈ Q1 and r2 ∈ Q2}. This set is the Cartesian product of sets Q1 and Q2 and is written Q1 ×Q2. It is the set of all
-> pairs of states, the first from Q1 and the second from Q2.
-> 2. Σ, the alphabet, is the same as in M1 and M2. In this theorem and in all subsequent similar theorems, we assume for simplicity that both
-> M1 and M2 have the same input alphabet Σ. The theorem remains true if
-> they have different alphabets, Σ1 and Σ2. We would then modify the
-> proof to let Σ = Σ1 ∪ Σ2.
-> 3. δ, the transition function, is defined as follows. For each (r1, r2) ∈ Q and each a ∈ Σ, let δ ((r1, r2), a) =( δ1(r1, a), δ2(r2, a) )
-> . Hence δ gets a state of M (which actually is a pair of states from
-> M1 and M2), together with an input symbol, and returns M’s next state.
+> 1. Q = {(r1, r2)| r1 ∈ Q1 and r2 ∈ Q2}. This set is the Cartesian product of sets Q1 and Q2 and is written Q1 ×Q2. It is the set of all pairs of states, the first from Q1 and the second from Q2.
+> 2. Σ, the alphabet, is the same as in M1 and M2. In this theorem and in all subsequent similar theorems, we assume for simplicity that both M1 and M2 have the same input alphabet Σ. The theorem remains true if they have different alphabets, Σ1 and Σ2. We would then modify the proof to let Σ = Σ1 ∪ Σ2.
+> 3. δ, the transition function, is defined as follows. For each (r1, r2) ∈ Q and each a ∈ Σ, let δ ((r1, r2), a) =( δ1(r1, a), δ2(r2, a) ). Hence δ gets a state of M (which actually is a pair of states from M1 and M2), together with an input symbol, and returns M’s next state.
 > 4. . q0 is the pair (q1, q2).
-> 5. . F is the set of pairs in which either member is an accept state of M1 or M2. We can write it as F = {(r1, r2)| r1 ∈ F1 or r2 ∈ F2}.
-> This expression is the same as F = (F1 × Q2) ∪ (Q1 × F2).
+> 5. F is the set of pairs in which either member is an accept state of M1 or M2. We can write it as F = {(r1, r2)| r1 ∈ F1 or r2 ∈ F2}. This expression is the same as F = (F1 × Q2) ∪ (Q1 × F2).
 > 
-> ***Note:*** F1 X F2  would define M’s accept states to be those for which both members of the pair are accept states. In this case, M
-> would accept a string only if both M1 and M2 accept it, so the
-> resulting language would be the intersection and not the union. In
-> fact, this result proves that the class of regular languages is closed
-> under intersection.
+> ***Note:*** F1 X F2  would define M’s accept states to be those for which both members of the pair are accept states. In this case, M would accept a string only if both M1 and M2 accept it, so the resulting language would be the intersection and not the union. In fact, this result proves that the class of regular languages is closed under intersection.
+
+## Non-Determinism
+- Nondeterminism is a useful concept that has had great impact on the theory of computation.
+- In a nondeterministic machine, several choices may exist for the next state at any point.
+	- There is no physical machine exists for NFA model.
+- Nondeterminism is a generalization of determinism, so every deterministic finite automaton is automatically a nondeterministic finite automaton.
+- Comparison between NFA and DFA:
+- 
+|               | NFA                          | DFA                   |
+|:-------------:|:----------------------------:|:---------------------:|
+| Symbol Arrows | 0,1, or many for each symbol | 1                     |
+| Labels        | Alphabet Symbols or Epsilon  | Alphabet Symbols only |
+- How does an NFA compute?
+	- After reading a symbol, the machine splits into multiple copies of itself and follows all the possibilities in parallel. Each copy of the machine takes one of the possible ways to proceed and continues as before.
+	- If the next input symbol doesn’t appear on any of the arrows exiting the state occupied by a copy of the machine, that copy of the machine dies, along with the branch of the computation associated with it.
+	- If any one of these copies of the machine is in an accept state at the end of the input, the NFA accepts the input string.
+	- If a state with an ε symbol on an exiting arrow is encountered, something similar happens. Without reading any input, the machine splits into multiple copies, one following each of the exiting ε-labeled arrows and one staying at the current state.
+- Another way to think of a nondeterministic computation is as a tree of possibilities.
+	- The root of the tree corresponds to the start of the computation. 
+	- Every branching point in the tree corresponds to a point in the computation at which the machine has multiple choices.
+#### Formal Definition of a Non-Deterministic Finite Automaton
+- A nondeterministic finite automaton is a 5-tuple $(Q, Σ, δ, q_0, F)$
+	- $Q$ is a finite set called the states.
+	- $Σ$ is a finite set called the alphabet.
+	- $δ : Q × Σ_{\epsilon} → P(Q)$ is the transition function.
+	- $q_0 ∈ Q$ is the start state.
+	- $F ⊆ Q$ is the set of accept states.
+- $P(Q)$ is called the power set of $Q$.
+- For any alphabet $Σ$ we write $Σ_ε$ to be $Σ ∪ {ε}$.
+- Formal Definitation of Computation
+	- Let $N = (Q, Σ, δ, q_0, F)$ be a finite automaton and let $w = w_1w_2...w_m$ be a string where each $w_i$ is a member of the alphabet $Σ$.
+		- Then M accepts $w$ if a sequence of states $r_0, r_1, . . . , r_m$ in $Q$ exists with three conditions:
+		1. $r_0 = q_0$,: the machine starts in the start state.
+		2. $r_{i+1} {\in}{\space}δ(r_i , w_{i+1}), for \space i = 0, . . . , n − 1$
+		3. and $r_m ∈ F$: t 
+
